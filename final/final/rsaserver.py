@@ -23,12 +23,13 @@ msg1=readfile("1kb.txt")
 def hashit(content):
 	return SHA256.new(content)
 
-print("Hash time")
+print("=======RSA Algorithm========")
+print("RSA Hash time")
 with CodeTimer():
 	digest1=hashit(msg1)
 
 # Key gen time
-print("key gen time")
+print("RSA key gen time")
 with CodeTimer():
 	keyPair = RSA.generate(bits=1024)
 	pubKey = keyPair.publickey()	
@@ -42,7 +43,7 @@ def sign(content,keyPair):
 	signature = signer.sign(content)
 	return signature
 
-print("Sign time")
+print("RSA Sign time")
 with CodeTimer():
 	sig1=sign(digest1,keyPair)
 

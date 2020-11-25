@@ -7,7 +7,7 @@ s = socket.socket()
 
 port = 10005				
 
-s.connect(('localhost', port)) 
+s.connect(('10.0.0.1', port)) 
 
 x = s.recv(1172)
 msg1 = x[:1044]

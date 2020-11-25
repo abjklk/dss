@@ -22,13 +22,13 @@ msg1=readfile("1kb.txt")
 
 def hashit(content):
 	return SHA256.new(content)
-
-print("Hash time")
+print("=============DSS Algorithm=============")
+print("DSS Hash time")
 with CodeTimer():
 	digest1=hashit(msg1)
 
 # Key gen time
-print("key gen time")
+print("DSS key gen time")
 with CodeTimer():
 	key = DSA.generate(1024)
 	publickey=key.publickey()	
@@ -42,7 +42,7 @@ def sign(content,key):
 	signature = signer.sign(content)
 	return signature
 
-print("Sign time")
+print("DSS Sign time")
 with CodeTimer():
 	sig1=sign(digest1,key)
 

@@ -22,12 +22,13 @@ msg1=readfile("1kb.txt")
 def hashit(content):
 	return SHA256.new(content).digest()
 
-print("Hash time")
+print("===========ECDSA Algorithm=============")
+print("ECDSA Hash time")
 with CodeTimer():
 	digest1=hashit(msg1)
 
 # Key gen time
-print("key gen time")
+print("ECDSA key gen time")
 with CodeTimer():
 	sk = SigningKey.generate(curve=SECP256k1)
 	vk = sk.verifying_key
@@ -41,7 +42,7 @@ def sign(content):
 	signature = sk.sign(content)
 	return signature
 
-print("Sign time")
+print("ECDSA Sign time")
 with CodeTimer():
 	sig1=sign(digest1)
 

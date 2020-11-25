@@ -57,7 +57,7 @@ s = socket.socket()
 port = 10001				
 
 s.bind(('', port))
-print(f"socket binded to {port}")
+print("socket binded to",str(port))
 
 s.listen(5)	 
 print("socket is listening")

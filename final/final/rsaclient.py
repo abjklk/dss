@@ -3,7 +3,7 @@ from linetimer import CodeTimer
 from Crypto.Hash import SHA256
 from Crypto.PublicKey import RSA
 from Crypto.Signature.pkcs1_15 import PKCS115_SigScheme
-
+import time
 s = socket.socket()		 
 
 port = 10001			
@@ -28,11 +28,18 @@ def hashit(content):
 	return SHA256.new(content)
 
 print("Hashing time")
-with CodeTimer():
-	digest1=hashit(msg1)
+t0=time.time()
+digest1=hashit(msg1)
+t1=time.time()
+hashingtime=(t1-t0)*1000
 
 print("\n\n verification time")
-with CodeTimer():
-	verify1(digest1,sig1,pubKey)
+t0=time.time()
+verify1(digest1,sig1,pubKey)
+t1=time.time()
+verificationtime=(t1-t0)*1000
+
+with open("results.txt","a") as f:
+	f.write("RSA Hashing time " +str(hashingtime)+ "RSA verification time " + str(verificationtime)+"\n")
 
 s.close()	 

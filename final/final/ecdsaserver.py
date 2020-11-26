@@ -29,9 +29,11 @@ with CodeTimer():
 
 # Key gen time
 print("ECDSA key gen time")
-with CodeTimer():
-	sk = SigningKey.generate(curve=SECP256k1)
-	vk = sk.verifying_key
+t0=time.time()
+sk = SigningKey.generate(curve=SECP256k1)
+vk = sk.verifying_key
+t1=time.time()
+keygentime=(t1-t0)*1000
 
 
 with open("ecdsakey.pem","wb") as f:
@@ -43,8 +45,14 @@ def sign(content):
 	return signature
 
 print("ECDSA Sign time")
-with CodeTimer():
-	sig1=sign(digest1)
+t0=time.time()
+sig1=sign(digest1)
+t1=time.time()
+signingtime=(t1-t0)*1000
+
+with open("results.txt","a") as f:
+	f.write("ECDSA keygen time " +str(keygentime)+ "ECDSA signing time " + str(signingtime)+"\n")
+
 
 print("===================")
 print(msg1,sig1)

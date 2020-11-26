@@ -29,9 +29,11 @@ with CodeTimer():
 
 # Key gen time
 print("DSS key gen time")
-with CodeTimer():
-	key = DSA.generate(1024)
-	publickey=key.publickey()	
+t0=time.time()
+key = DSA.generate(1024)
+publickey=key.publickey()	
+t1=time.time()
+keygentime=(t1-t0)*1000
 
 with open("dsskey.pem","w") as f:
 	f.write(publickey.export_key().decode())
@@ -43,8 +45,10 @@ def sign(content,key):
 	return signature
 
 print("DSS Sign time")
-with CodeTimer():
-	sig1=sign(digest1,key)
+t0=time.time()
+sig1=sign(digest1,key)
+t1=time.time()
+signingtime=(t1-t0)*1000
 
 print("===================")
 print(msg1,sig1)
@@ -62,6 +66,8 @@ print("socket binded to",str(port))
 s.listen(5)	 
 print("socket is listening")
 
+with open("results.txt","a") as f:
+	f.write("DSS keygen time " +str(keygentime)+ "DSS signing time " + str(signingtime)+"\n")
 
 while True: 
 	c, addr = s.accept()

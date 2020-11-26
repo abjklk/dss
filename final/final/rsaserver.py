@@ -30,9 +30,11 @@ with CodeTimer():
 
 # Key gen time
 print("RSA key gen time")
-with CodeTimer():
-	keyPair = RSA.generate(bits=1024)
-	pubKey = keyPair.publickey()	
+t0=time.time()
+keyPair = RSA.generate(bits=1024)
+pubKey = keyPair.publickey()	
+t1=time.time()
+keygentime=(t1-t0)*1000
 
 with open("rsakey.pem","w") as f:
 	f.write(pubKey.export_key().decode())
@@ -44,14 +46,20 @@ def sign(content,keyPair):
 	return signature
 
 print("RSA Sign time")
-with CodeTimer():
-	sig1=sign(digest1,keyPair)
+t0=time.time()
+sig1=sign(digest1,keyPair)
+t1=time.time()
+signingtime=(t1-t0)*1000
+
 
 print("===================")
 print(msg1,sig1)
 print(len(msg1))
 print(len(sig1))
 print("===================")
+
+with open("results.txt","a") as f:
+	f.write("RSA keygen time " +str(keygentime)+ "RSA signing time " + str(signingtime)+"\n")
 
 s = socket.socket()		 
 

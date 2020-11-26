@@ -2,7 +2,7 @@ import socket
 from linetimer import CodeTimer
 from Crypto.Hash import SHA256
 import ed25519
-
+import time
 s = socket.socket()		 
 
 port = 10005				
@@ -27,11 +27,18 @@ def hashit(content):
 	return SHA256.new(content).digest()
 
 print("Hashing time")
-with CodeTimer():
-	digest1=hashit(msg1)
+t0=time.time()
+digest1=hashit(msg1)
+t1=time.time()
+hashingtime=(t1-t0)*1000
 
 print("\n\n verification time")
-with CodeTimer():
-	verify1(digest1,sig1)
-	
+t0=time.time()
+verify1(digest1,sig1)
+t1=time.time()
+verificationtime=(t1-t0)*1000
+
+with open("results.txt","a") as f:
+	f.write("EDDSA Hashing time " +str(hashingtime)+ "EDDSA verification time " + str(verificationtime)+"\n")
+
 s.close()	 

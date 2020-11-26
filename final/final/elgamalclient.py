@@ -8,7 +8,7 @@ import libnum
 import sys
 from random import randint
 import hashlib
-
+import time
 
 s = socket.socket()		 
 
@@ -43,11 +43,18 @@ def hashit(content):
 	return int.from_bytes(temp,byteorder='big' )
 
 print("Hashing time")
-with CodeTimer():
-	digest1=hashit(msg1)
+t0=time.time()
+digest1=hashit(msg1)
+t1=time.time()
+hashingtime=(t1-t0)*1000
 
 print("\n\n verification time")
-with CodeTimer():
-	verify1(sig1,sig11,digest1)
+t0=time.time()
+verify1(sig1,sig11,digest1)
+t1=time.time()
+verificationtime=(t1-t0)*1000
+
+with open("results.txt","a") as f:
+	f.write("Elgamal Hashing time " +str(hashingtime)+ "Elgamal verification time " + str(verificationtime)+"\n")
 
 s.close()	 

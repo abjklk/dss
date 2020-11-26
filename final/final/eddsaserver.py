@@ -29,8 +29,10 @@ with CodeTimer():
 
 # Key gen time
 print("EDDSA key gen time")
-with CodeTimer():
-	privKey, pubKey = ed25519.create_keypair()
+t0=time.time()
+privKey, pubKey = ed25519.create_keypair()
+t1=time.time()
+keygentime=(t1-t0)*1000
 
 with open("eddsakey.pem","wb") as f:
 	f.write(pubKey.to_bytes())
@@ -41,8 +43,10 @@ def sign(content):
 	return signature
 
 print("EDDSA Sign time")
-with CodeTimer():
-	sig1=sign(digest1)
+t0=time.time()
+sig1=sign(digest1)
+t1=time.time()
+signingtime=(t1-t0)*1000
 
 print("===================")
 print(msg1,sig1)
@@ -50,6 +54,9 @@ print(len(msg1))
 print(len(sig1))
 print("===================")
 
+with open("results.txt","a") as f:
+	f.write("EDDSA keygen time " +str(keygentime)+ "EDDSA signing time " + str(signingtime)+"\n")
+	
 s = socket.socket()		 
 
 port = 10005				

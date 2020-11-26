@@ -41,6 +41,6 @@ t1=time.time()
 verificationtime=(t1-t0)*1000
 
 with open("results.txt","a") as f:
-	f.write("ECDSA Hashing time " +str(hashingtime)+ "ECDSA verification time " + str(verificationtime)+"\n")
+	f.write("ECDSA Hashing time " +str(hashingtime)+"\n"+ "ECDSA verification time " + str(verificationtime)+"\n")
 
 s.close()	 

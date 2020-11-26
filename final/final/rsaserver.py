@@ -59,7 +59,7 @@ print(len(sig1))
 print("===================")
 
 with open("results.txt","a") as f:
-	f.write("RSA keygen time " +str(keygentime)+ "RSA signing time " + str(signingtime)+"\n")
+	f.write("RSA keygen time " +str(keygentime)+"\n"+ "RSA signing time " + str(signingtime)+"\n")
 
 s = socket.socket()		 
 

@@ -67,7 +67,7 @@ s.listen(5)
 print("socket is listening")
 
 with open("results.txt","a") as f:
-	f.write("DSS keygen time " +str(keygentime)+ "DSS signing time " + str(signingtime)+"\n")
+	f.write("DSS keygen time " +str(keygentime)+"\n"+ "DSS signing time " + str(signingtime)+"\n")
 
 while True: 
 	c, addr = s.accept()

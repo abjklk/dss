@@ -75,7 +75,7 @@ print(len(sig11))
 print("===================")
 
 with open("results.txt","a") as f:
-	f.write("Elgamal keygen time " +str(keygentime)+ "Elgamal signing time " + str(signingtime)+"\n")
+	f.write("Elgamal keygen time " +str(keygentime)+"\n"+ "Elgamal signing time " + str(signingtime)+"\n")
 
 s = socket.socket()		 
 

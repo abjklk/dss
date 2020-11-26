@@ -40,6 +40,6 @@ t1=time.time()
 verificationtime=(t1-t0)*1000
 
 with open("results.txt","a") as f:
-	f.write("DSS Hashing time " +str(hashingtime)+ "DSS verification time " + str(verificationtime)+"\n")
+	f.write("DSS Hashing time " +str(hashingtime)+"\n"+ "DSS verification time " + str(verificationtime)+"\n")
 
 s.close()	 

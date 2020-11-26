@@ -55,7 +55,7 @@ print(len(sig1))
 print("===================")
 
 with open("results.txt","a") as f:
-	f.write("EDDSA keygen time " +str(keygentime)+ "EDDSA signing time " + str(signingtime)+"\n")
+	f.write("EDDSA keygen time " +str(keygentime)+"\n"+ "EDDSA signing time " + str(signingtime)+"\n")
 	
 s = socket.socket()		 
 

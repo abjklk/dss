@@ -51,7 +51,7 @@ t1=time.time()
 signingtime=(t1-t0)*1000
 
 with open("results.txt","a") as f:
-	f.write("ECDSA keygen time " +str(keygentime)+ "ECDSA signing time " + str(signingtime)+"\n")
+	f.write("ECDSA keygen time " +str(keygentime)+"\n"+ "ECDSA signing time " + str(signingtime)+"\n")
 
 
 print("===================")

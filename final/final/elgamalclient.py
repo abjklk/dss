@@ -55,6 +55,6 @@ t1=time.time()
 verificationtime=(t1-t0)*1000
 
 with open("results.txt","a") as f:
-	f.write("Elgamal Hashing time " +str(hashingtime)+ "Elgamal verification time " + str(verificationtime)+"\n")
+	f.write("Elgamal Hashing time " +str(hashingtime)+"\n"+ "Elgamal verification time " + str(verificationtime)+"\n")
 
 s.close()	 
